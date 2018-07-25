@@ -12,25 +12,26 @@
                 padding: 0;
                 background-color: #CD853F;
             }
-/*
-            #canvas{
+            #canvas-container{
                 position: absolute;
-                display: block;
+                width: 80%;
+                height: 80%;
                 top: 0;
-                right: 0;
-                bottom: 0;
                 left: 0;
+                bottom: 0;
+                right: 0;
                 margin: auto;
             }
-*/
         </style>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
+        <div id="canvas-container">
+             <canvas id="canvas"></canvas>
+        </div>
     </body>
     <script src='gobang.js' type='text/javascript'></script>
     <script>
-        var cheeseboard = new CheeseBoard(20, 40, 5);
+        let cheeseboard = new CheeseBoard();
         cheeseboard.init();
     </script>
 </html>

@@ -1,11 +1,11 @@
 ;(function() {
     "use strict";
-    var _global;
+    let _global;
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     /*先手为黑子*/
-    var currentUser = 'black';
+    let currentUser = 'black';
     /*
     * 定义棋盘对象
     * n:每条边有多少条线
@@ -17,15 +17,9 @@
     * drawCheese():画棋子
     * checkWin():是否获胜
     */
-
-    var config = {
-        n: 10,
-        cellWidth: 40,
-        maxCount: 5,
-    };
-    function CheeseBoard(n, cellWidth, maxCount){
+    function CheeseBoard(n = 20, cellWidth = 40, maxCount = 5){
         this.cellWidth = cellWidth;
-        this.maxCount = maxCount
+        this.maxCount = maxCount;
         this.isEnd = false;
         this.line = n;
         this.arr = [];
@@ -34,6 +28,7 @@
         init: function () {
             canvas.width = this.cellWidth*(this.line + 1);
             canvas.height = this.cellWidth*(this.line + 1);
+            ctx.save();
             ctx.beginPath();
             for(let i = 0;i <= this.line;i ++){
                 ctx.moveTo(this.cellWidth / 2, this.cellWidth / 2 + this.cellWidth*i);
@@ -120,8 +115,8 @@
     canvas.onmousedown = function(event) {
         var e = event || window.event;
         
-        if(!cheeseboard.isExsit(e.clientX, e.clientY)){
-            cheeseboard.drawCheese(e.clientX, e.clientY, currentUser);
+        if(!cheeseboard.isExsit(e.offsetX, e.offsetY)){
+            cheeseboard.drawCheese(e.offsetX, e.offsetY, currentUser);
             currentUser = currentUser == 'black' ? 'white' : 'black';
         }
     }
